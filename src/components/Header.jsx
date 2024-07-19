@@ -9,8 +9,9 @@ export default function Header() {
           <a class="" href="https://brightlystake.com">Brightlystake</a>
         </li>
         <li className='li-r'><a class="active" href="/rpc-status">RPC</a></li>
-        <li className='li-r'><a class="active" href="/grpc-status">gRPC</a></li>
-        {/* <li className='li-r'><a class="active" href="/latency">Latency</a></li> */}
+        <li className='li-r'><a class="active" href="/wss-status">WSS</a></li>
+        <li className='li-r'><a class="active" href="/staking">Staking</a></li>
+
       </ul>
     </div>
   )
