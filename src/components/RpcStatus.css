@@ -43,7 +43,7 @@
   }
 
   #validators thead tr {
-    background-color: #6610f2;
+    background-color: rgb(47, 179, 234);
     color: #ffffff;
     text-align: center;
     font-weight: bold;
@@ -162,7 +162,7 @@
   }
 
   .network-buttons button.active {
-    background-color: #6610f2;
+    background-color: rgb(47, 179, 234);
     /* Blue color when active */
     color: white;
     /* White text color when active */
