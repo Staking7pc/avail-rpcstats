@@ -10,8 +10,9 @@ function RpcStatus(props) {
     { key: "rpc_endpoint", label: "END POINT" },
     { key: "issynching", label: "IN SYNC?" },
     { key: "peers", label: "PEERS" },
-    { key: "startingblock", label: "EARLIEST_BLOCK" },
     { key: "currentblock", label: "LATEST_BLOCK" },
+    { key: "state_pruning", label: "STATE PRUNED?" },
+    { key: "block_pruning", label: "BLOCK PRUNED?" },
     { key: "network", label: "NETWORK" },
     { key: "role", label: "NODE_TYPE" },
   ];
@@ -35,7 +36,7 @@ function RpcStatus(props) {
     axios.get('https://avail-tools.brightlystake.com/api/avail/rpc-status')
       .then(res => {
         setRpcDetails(res.data);
-        setTime(res.data[2].timestamp); // Renamed to setTime
+        setTime(res.data[2].updated_at); // Renamed to setTime
       })
       .catch(err => {
         console.error("Error fetching RPC details:", err);
@@ -88,8 +89,10 @@ function RpcStatus(props) {
                       </td>
                       <td className={(val.issynching === "" && val.network!= "")? "Active" : "InActive"}>{(val.issynching ==="" && val.network== "") ? "--" : "Yes"}</td>
                       <td className={val.peers < 10 ? 'green' : 'NO'}>{val.peers}</td>
-                      <td>{val.startingblock}</td>
                       <td className={val.currentblock == 'None' ? 'InActive' : 'NO'}>{val.currentblock}</td>
+                      <td className={val.state_pruning == 'YES' ? 'InActive' : 'Active'}>{val.state_pruning}</td>
+                      <td className={val.block_pruning == 'YES' ? 'InActive' : 'Active'}>{val.block_pruning}</td>
+
                       <td className={val.network === "blockspacerace-0" ? "Active" : "InActive"}>{val.network}</td>
                       <td className={val.role}>{val.role}</td>
                     </tr>

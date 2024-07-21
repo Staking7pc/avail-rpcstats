@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import Individual from "./components/Individual";
 import RpcStatus from "./components/RpcStatus";
-import GrpcStatus from "./components/GrpcStatus";
+import WssStatus from "./components/WssStatus";
 import APIStatus from "./components/APIStatus";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Latency from "./components/Latency";
@@ -22,8 +22,7 @@ root.render(
         <Route path="/" element={<RpcStatus/>} />
         <Route path="/validator/:valoper" element={<Individual/>} />
         <Route path="/rpc-status" element={<RpcStatus/>} />
-        <Route path="/grpc-status" element={<GrpcStatus/>} />
-        <Route path="/api-status" element={<APIStatus/>} />
+        <Route path="/wss-status" element={<WssStatus/>} />
         <Route path="/latency" element={<Latency/>} />
       </Routes>
     </React.Fragment>
