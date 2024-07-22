@@ -28,7 +28,7 @@
                                 <p>
                                     If you see a discrepancy please report to us.
                                 </p>
-                                <a target="_blank" rel="noopener noreferrer" href="https://t.me/+viPCrANM-mgwZjA0" class="btn">Report</a>
+                                <a target="_blank" rel="noopener noreferrer" href="https://t.me/+rNaQ6BdivcY4MDVk" class="btn">Report</a>
                             </div>
                         </div>                        
                         <div class="card">

@@ -22,9 +22,9 @@ function RpcStatus(props) {
   const [time1, setTime] = useState(); // CamelCased
   const [copiedUrl, setCopiedUrl] = useState(null);
   const [sortedColumn, setSortedColumn] = useState(null);
-  const [selectedNetwork, setSelectedNetwork] = useState('Avail Turing Network');
+  const [selectedNetwork, setSelectedNetwork] = useState('Avail DA Mainnet');
   let networks = [...new Set(rpcDetails.map(detail => detail.network))];
-
+  console.log(networks)
   const handleCopyClick = (text) => {
     navigator.clipboard.writeText(text);
     setCopiedUrl(text);
@@ -54,46 +54,44 @@ function RpcStatus(props) {
         <div className="network-buttons">
           {networks.map(network => (
             <button
-              key={network}
+              key={'network'}
               onClick={() => setSelectedNetwork(String(network))}
               className={selectedNetwork === String(network) ? 'active' : ''}
             >
-              {network == 'None' ? 'Not-reachable Endpoints' : network == 'Avail Turing Network' ? 'Testnet':network == 'Avail Mainnet' ? 'Mainnet':network}
+              {(network === 'Avail Turing Network') ? 'Testnet' : (network === 'Avail DA Mainnet') ? 'Mainnet' : "All"}
             </button>
-
+            
           ))}
-          <button onClick={() => setSelectedNetwork(null)}>Show All</button>
-         
+          {/* <button onClick={() => setSelectedNetwork()}>Show All</button> */}
         </div>
         <table id='validators' key={`${selectedNetwork}-${sortedColumn}-${order}`}>
 
           <thead>
             <tr className='header'>
               {headers.map((row) => {
-                return <td>{row.label}</td>
+                return <td key={row.key}>{row.label}</td>
               })}
             </tr>
           </thead>
           <tbody>
             {
               rpcDetails
-                .filter(detail => !selectedNetwork || String(detail.network) === String(selectedNetwork))
+                .filter(detail => selectedNetwork === "" || (selectedNetwork === 'Not-reachable Endpoints' && detail.network === "") || (selectedNetwork !== 'Not-reachable Endpoints' && String(detail.network) === String(selectedNetwork)))
                 .map(val => {
                   return (
-                    <tr className={(val.issynching != "") ? "error" : val.currentblock == 'None' ? 'error' : 'NO'} key={val.moniker}>
+                    <tr className={(val.network == "") ? "error": 'NO'} key={val.rpc_endpoint}>
                       <td className="tooltip" onClick={() => handleCopyClick(val.rpc_endpoint)}>
                         {val.rpc_endpoint}
                         <span className={`tooltiptext ${copiedUrl === val.rpc_endpoint ? 'copied' : ''}`}>
                           {copiedUrl === val.rpc_endpoint ? 'Copied!' : 'Click to copy'}
                         </span>
                       </td>
-                      <td className={(val.issynching === "" && val.network!= "")? "Active" : "InActive"}>{(val.issynching ==="" && val.network== "") ? "--" : "Yes"}</td>
-                      <td className={val.peers < 10 ? 'green' : 'NO'}>{val.peers}</td>
-                      <td className={val.currentblock == 'None' ? 'InActive' : 'NO'}>{val.currentblock}</td>
-                      <td className={val.state_pruning == 'YES' ? 'InActive' : 'Active'}>{val.state_pruning}</td>
-                      <td className={val.block_pruning == 'YES' ? 'InActive' : 'Active'}>{val.block_pruning}</td>
-
-                      <td className={val.network === "blockspacerace-0" ? "Active" : "InActive"}>{val.network}</td>
+                      <td className={(val.issynching === "" && val.network !== "") ? "Active" : "InActive"}>{(val.issynching === "" && val.network === "") ? "--" : "Yes"}</td>
+                      <td className={val.peers < 5 ? 'InActive' : 'NO'}>{val.peers}</td>
+                      <td className={val.currentblock === 'None' ? 'InActive' : 'NO'}>{val.currentblock}</td>
+                      <td className={val.state_pruning === 'YES' ? 'InActive' : 'Active'}>{val.peers !== "" ? val.state_pruning : ""}</td>
+                      <td className={val.block_pruning === 'YES' ? 'InActive' : 'Active'}>{val.peers !== "" ? val.block_pruning : ""}</td>
+                      <td>{val.network}</td>
                       <td className={val.role}>{val.role}</td>
                     </tr>
                   )
@@ -106,5 +104,4 @@ function RpcStatus(props) {
   )
 }
 
-export default RpcStatus
-
+export default RpcStatus;
