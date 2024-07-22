@@ -86,7 +86,7 @@ function RpcStatus(props) {
                           {copiedUrl === val.rpc_endpoint ? 'Copied!' : 'Click to copy'}
                         </span>
                       </td>
-                      <td className={(val.issynching === "" && val.network !== "") ? "Active" : "Active"}>{(val.issynching === "" && val.network === "") ? "--" : "Yes"}</td>
+                      <td className={(val.issynching === "" && val.network !== "") ? "InActive" : (val.issynching === "true")? "InActive":"Active"}>{(val.issynching === "" && val.network === "") ? "--" : (val.issynching === "true")? "Not in Sync":"Yes"}</td>
                       <td className={val.peers < 5 ? 'InActive' : 'NO'}>{val.peers}</td>
                       <td className={val.currentblock === 'None' ? 'InActive' : 'NO'}>{val.currentblock}</td>
                       <td className={val.state_pruning === 'YES' ? 'InActive' : 'Active'}>{val.peers !== "" ? val.state_pruning : ""}</td>
