@@ -74,7 +74,7 @@ function WssStatus(props) {
               rpcDetails
                 .filter(detail => selectedNetwork === "" || (selectedNetwork === 'Not-reachable Endpoints' && detail.network === "") || (selectedNetwork !== 'Not-reachable Endpoints' && String(detail.network) === String(selectedNetwork)))
                 .map(val => (
-                  <tr className={val.status === "Failed" ? "error" : 'NO'} key={val.endpoint}> // Ensure the key is unique
+                  <tr className={val.status === "Failed" ? "error" : 'NO'} key={val.endpoint}>
                     <td className="tooltip" onClick={() => handleCopyClick(val.endpoint)}>
                       {val.endpoint}
                       <span className={`tooltiptext ${copiedUrl === val.endpoint ? 'copied' : ''}`}>
