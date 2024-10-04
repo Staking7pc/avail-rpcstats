@@ -1,0 +1,14 @@
+{
+    "https://mainnet.avail-rpc.com/":"Ankr",
+    "https://avail-mainnet.public.blastapi.io/":"Bware",
+    "https://avail-rpc.rubynodes.io/":"RubyNode",
+    "https://avail-us.brightlystake.com":"Brightlystake",
+    "https://rpc-avail.globalstake.io":"GlobalStake",
+    "https://avail.rpc.bountyblok.io/":"BountyBlok",
+    "https://avail.public.curie.radiumblock.co/http":"RadiumBlock",
+    "https://rpc.ankr.com/avail_turing_testnet":"Ankr",
+    "https://avail-turing.public.blastapi.io":"Bware",
+    "https://avail-turing-rpc.publicnode.com":"AllNodes",
+    "https://turing.public.curie.radiumblock.co/http":"RadiumBlock",
+    "https://avail-turing.bountyblok.io/":"BountyBlok"
+}
