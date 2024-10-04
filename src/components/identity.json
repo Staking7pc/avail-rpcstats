@@ -11,6 +11,8 @@
   "https://avail-turing-rpc.publicnode.com": "AllNodes",
   "https://turing.public.curie.radiumblock.co/http": "RadiumBlock",
   "https://avail-turing.bountyblok.io/": "BountyBlok",
+  "https://mainnet-rpc.avail.so/rpc":"Avail",
+  "https://turing-rpc.avail.so/rpc":"Avail",
   "wss://avail.rpc.bountyblok.io": "BountyBlok",
   "wss://avail-rpc.rubynodes.io": "RubyNode",
   "wss://avail-mainnet.public.blastapi.io": "Bware",
