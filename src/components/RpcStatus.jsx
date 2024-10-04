@@ -58,7 +58,7 @@ function RpcStatus(props) {
               onClick={() => setSelectedNetwork(String(network))}
               className={selectedNetwork === String(network) ? 'active' : ''}
             >
-              {(network === 'Avail Turing Network') ? 'Testnet' : (network === 'Avail DA Mainnet') ? 'Mainnet' : "All"}
+              {(network === 'Avail Turing Network') ? 'Testnet' : (network === 'Avail DA Mainnet') ? 'Mainnet' : "Misc"}
             </button>
           ))}
         </div>
