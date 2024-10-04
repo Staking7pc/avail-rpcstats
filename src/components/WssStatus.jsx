@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './WssStatus.css';
 import Header1 from './Header';
+import identity from './identity.json'; 
 
 function WssStatus(props) {
 
   const headers = [
     { key: "endpoint", label: "END POINT" },
+    { key: "moniker", label: "MONIKER" },
     { key: "block", label: "LATEST_BLOCK" },
     { key: "status", label: "CONNECTION STATUS" },
     { key: "version", label: "VERSION" },
@@ -81,6 +83,7 @@ function WssStatus(props) {
                         {copiedUrl === val.endpoint ? 'Copied!' : 'Click to copy'}
                       </span>
                     </td>
+                    <td>{identity[val.endpoint]}</td> {/* New MONIKER column */}
                     <td>{val.block}</td>
                     <td className={val.status === 'Failed' ? 'InActive' : 'NO'}>{val.status}</td> 
                     <td>{val.version}</td>
