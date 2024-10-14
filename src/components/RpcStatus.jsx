@@ -26,8 +26,8 @@ function RpcStatus(props) {
   const [sortedColumn, setSortedColumn] = useState(null);
   const [selectedNetwork, setSelectedNetwork] = useState('Avail DA Mainnet');
   
-  // Check if there are any records with no network ("" or undefined)
-  const hasNoResponse = rpcDetails.some(detail => detail.network === "" || detail.network === undefined);
+  // Check if there are any records with no network ("" or "Unknown" or other missing data)
+  const hasNoResponse = rpcDetails.some(detail => !detail.network || detail.network === "Unknown");
 
   // Define the expected networks explicitly and conditionally include "NoResponse"
   const expectedNetworks = ['Avail DA Mainnet', 'Avail Turing Network'];
@@ -82,8 +82,9 @@ function RpcStatus(props) {
           <tbody>
             {rpcDetails
               .filter(detail => {
+                // "NoResponse" filter: Check for missing or incomplete details
                 if (selectedNetwork === 'NoResponse') {
-                  return detail.network === "" || !detail.network; // Filter for no network/unreachable
+                  return !detail.network || detail.network === "Unknown"; 
                 }
                 return detail.network === selectedNetwork; // Filter for selected network
               })
