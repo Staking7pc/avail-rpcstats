@@ -9,6 +9,7 @@ function RpcStatus(props) {
 
   const headers = [
     { key: "rpc_endpoint", label: "END POINT" },
+    { key: "role", label: "VERSION" },    
     { key: "moniker", label: "MONIKER" }, // New header for Moniker
     { key: "issynching", label: "IN SYNC?" },
     { key: "peers", label: "PEERS" },
@@ -25,8 +26,8 @@ function RpcStatus(props) {
   const [sortedColumn, setSortedColumn] = useState(null);
   const [selectedNetwork, setSelectedNetwork] = useState('Avail DA Mainnet');
   
-  let networks = [...new Set(rpcDetails.map(detail => detail.network))];
-  console.log(networks)
+  // Define the expected networks explicitly
+  const expectedNetworks = ['Avail DA Mainnet', 'Avail Turing Network', 'NoResponse'];
 
   const handleCopyClick = (text) => {
     navigator.clipboard.writeText(text);
@@ -52,13 +53,14 @@ function RpcStatus(props) {
         <Cards />
         <h4 className='header1'> Last checked on {time1} UTC</h4>
         <div className="network-buttons">
-          {networks.map(network => (
+          {expectedNetworks.map(network => (
             <button
               key={network} // Updated the key to avoid duplication
-              onClick={() => setSelectedNetwork(String(network))}
-              className={selectedNetwork === String(network) ? 'active' : ''}
+              onClick={() => setSelectedNetwork(network)}
+              className={selectedNetwork === network ? 'active' : ''}
             >
-              {(network === 'Avail Turing Network') ? 'Testnet' : (network === 'Avail DA Mainnet') ? 'Mainnet' : "Misc"}
+              {network === 'Avail DA Mainnet' ? 'Mainnet' : 
+                network === 'Avail Turing Network' ? 'Testnet' : 'NoResponse'}
             </button>
           ))}
         </div>
@@ -73,20 +75,24 @@ function RpcStatus(props) {
           </thead>
           <tbody>
             {rpcDetails
-              .filter(detail => selectedNetwork === "" || 
-                (selectedNetwork === 'Not-reachable Endpoints' && detail.network === "") || 
-                (selectedNetwork !== 'Not-reachable Endpoints' && String(detail.network) === String(selectedNetwork)))
+              .filter(detail => {
+                if (selectedNetwork === 'NoResponse') {
+                  return detail.network === "" || !detail.network; // Filter for no network/unreachable
+                }
+                return detail.network === selectedNetwork; // Filter for selected network
+              })
               .map(val => {
                 const moniker = identity[val.rpc_endpoint] || 'Unknown'; // Get moniker from identity.json
                 return (
-                  <tr className={(val.network == "") ? "error" : 'NO'} key={val.rpc_endpoint}>
+                  <tr className={(val.network === "") ? "error" : 'NO'} key={val.rpc_endpoint}>
                     <td className="tooltip" onClick={() => handleCopyClick(val.rpc_endpoint)}>
                       {val.rpc_endpoint}
                       <span className={`tooltiptext ${copiedUrl === val.rpc_endpoint ? 'copied' : ''}`}>
                         {copiedUrl === val.rpc_endpoint ? 'Copied!' : 'Click to copy'}
                       </span>
                     </td>
-                    <td>{moniker}</td> {/* New MONIKER column */}
+                    <td>{val.role}</td> 
+                    <td>{moniker}</td> 
                     <td className={(val.issynching === "" && val.network !== "") ? "InActive" : (val.issynching === "true") ? "InActive" : "Active"}>
                       {(val.issynching === "" && val.network === "") ? "--" : (val.issynching === "true") ? "Not in Sync" : "Yes"}
                     </td>
