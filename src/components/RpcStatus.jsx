@@ -26,8 +26,14 @@ function RpcStatus(props) {
   const [sortedColumn, setSortedColumn] = useState(null);
   const [selectedNetwork, setSelectedNetwork] = useState('Avail DA Mainnet');
   
-  // Define the expected networks explicitly
-  const expectedNetworks = ['Avail DA Mainnet', 'Avail Turing Network', 'NoResponse'];
+  // Check if there are any records with no network ("" or undefined)
+  const hasNoResponse = rpcDetails.some(detail => detail.network === "" || detail.network === undefined);
+
+  // Define the expected networks explicitly and conditionally include "NoResponse"
+  const expectedNetworks = ['Avail DA Mainnet', 'Avail Turing Network'];
+  if (hasNoResponse) {
+    expectedNetworks.push('NoResponse'); // Only add "NoResponse" if relevant
+  }
 
   const handleCopyClick = (text) => {
     navigator.clipboard.writeText(text);
