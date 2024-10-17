@@ -11,8 +11,8 @@
   "https://avail-turing-rpc.publicnode.com": "AllNodes",
   "https://turing.public.curie.radiumblock.co/http": "RadiumBlock",
   "https://avail-turing.bountyblok.io/": "BountyBlok",
-  "https://mainnet-rpc.avail.so/rpc":"Avail",
-  "https://turing-rpc.avail.so/rpc":"Avail",
+  "https://mainnet-rpc.avail.so/rpc": "Avail",
+  "https://turing-rpc.avail.so/rpc": "Avail",
   "wss://avail.rpc.bountyblok.io": "BountyBlok",
   "wss://avail-rpc.rubynodes.io": "RubyNode",
   "wss://avail-mainnet.public.blastapi.io": "Bware",
@@ -24,5 +24,9 @@
   "wss://avail-turing.public.blastapi.io": "Bware",
   "wss://avail-turing-rpc.publicnode.com": "AllNodes",
   "wss://avail-turing.bountyblok.io": "BountyBlok",
-  "wss://turing-testnet.avail-rpc.com": "Ankr"
+  "wss://turing-testnet.avail-rpc.com": "Ankr",
+  "wss://rpc.avail.stakepool.dev.br/ws": "Stakepool",
+  "https://rpc.avail.stakepool.dev.br/rpc": "Stakepool",
+  "https://avail.api.onfinality.io/public": "Onfinality",
+  "wss://avail.api.onfinality.io/public-ws": "Onfinality"
 }
