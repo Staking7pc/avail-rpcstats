@@ -30,5 +30,7 @@
   "https://avail.api.onfinality.io/public": "Onfinality",
   "wss://avail.api.onfinality.io/public-ws": "Onfinality",
   "https://avail-rpc.lgns.net/":"Luganodes",
-  "wss://avail-rpc.lgns.net":"Luganodes"
+  "wss://avail-rpc.lgns.net":"Luganodes",
+  "https://avail-rpc.publicnode.com":"Allnodes",
+  "wss://avail-rpc.publicnode.com":"Allnodes"
 }
